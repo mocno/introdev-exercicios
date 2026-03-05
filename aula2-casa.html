@@ -89,97 +89,41 @@
         <h3>Desafio 1: O Interruptor (Modo Claro/Escuro simples)</h3>
 
         <p><strong>Cenário:</strong> Crie um botão e um texto que diz "A luz está APAGADA".</p>
-        
 
-        <p><strong>Requisitos:</strong></p>
-        <p>
-    Crie uma função chamada alternarLuz() e coloque no onclick do botão.
-    Use document.querySelector para pegar o texto.
-    Use uma condicional (if e ===). Se o texto for "A luz está APAGADA", mude para "A luz está ACESA". Se não, mude de volta para "A luz está APAGADA".
-        </p>
-
-
-
-            1. O Primeiro Evento</h3>
-        <p>Crie uma função chamada <code>dispararAlerta()</code> que exiba uma mensagem de boas-vindas usando <code>alert()</code>. Vincule esta função ao clique do botão abaixo.</p>
-        <button onclick="dispararAlerta()">Exibir Alerta</button>
+        <button onclick='alternarLuz(); return false;' id="btn-alternar-luz">A luz está APAGADA</button>
     </div>
 
     <div class="exercise-box">
-        <h3>2. Loops e Console</h3>
-        <p>Crie uma função chamada <code>contarPares()</code>. Ela deve usar um laço <code>for</code> de 1 a 10 e imprimir no <strong>console do navegador</strong> apenas os números pares. Lembre-se de abrir o F12 para ver o resultado!</p>
-        
-        
-        
-        <br>
-        <button onclick="contarPares()">Imprimir Pares no Console</button>
-    </div>
+        <h3>Desafio 2: O Multiplicador</h3>
 
-    <div class="exercise-box">
-        <h3>3. Manipulando a DOM (querySelector)</h3>
-        <p>Use o <code>document.querySelector</code> para selecionar o texto ao lado do botão. Quando o botão for clicado, mude o <code>innerHTML</code> desse texto para "JavaScript Dominado!".</p>
-        <button onclick="mudarTexto()">Mudar Texto</button>
-        <span id="texto-alvo" class="output-text">Texto Original</span>
-    </div>
+        <p><strong>Cenário:</strong> Crie uma variação do contador da aula. Desta vez, vamos multiplicar os números.</p>
 
-    <div class="exercise-box">
-        <h3>4. Condicionais e Tipagem (===)</h3>
-        <p>Crie uma função que verifique o estado do texto abaixo. Se o 
-texto for estritamente igual a "Desligado", mude-o para "Ligado". Caso 
-contrário, mude de volta para "Desligado".</p>
-        <button onclick="alternarEstado()">Alternar (Toggle)</button>
-        <span id="texto-estado" class="output-text">Desligado</span>
-    </div>
-
-    <div class="exercise-box">
-        <h3>5. Contador Dinâmico com Template Literals</h3>
-        <p>Declare uma variável global com valor 10. Toda vez que clicar no botão, diminua 1 do valor e atualize a tela. Use <em>Template Literals</em> para exibir um <code>alert(`Fim do tempo!`)</code> quando chegar a zero.</p>
-        <button onclick="contagemRegressiva()">Diminuir</button>
-        <span id="visor-contador" class="output-text">10</span>
+        <h1 id="titulo-numero">2</h1>
+        <button onclick="dobrarNumero(); return false;">Dobrar</button>
     </div>
 </div>
 
 <script>
-	// Exercício 1
-	function dispararAlerta() {
-		alert("Bom dia, venho por meio desta te dar boas vindas!!!")
-	}
+    let luzState = false;
+    let valor = 2;
+    let btnAlterarLuz = document.querySelector("#btn-alternar-luz");
+    let tituloNumero = document.querySelector("#titulo-numero");
 
-	// Exercício 2
-	function contarPares() {
-		for (var i = 0; i <= 10; i++) {
-			if (i % 2 == 0) {
-				console.log(i)
-			}
-		}
-	}
+    function alternarLuz() {
+        luzState = !luzState;
+        btnAlterarLuz.textContent = luzState ?  "A luz está ACESA" : "A luz está APAGADA";
+        document.body.style.backgroundColor = luzState ? "#696969" :  "var(--background-color)";
+    }
 
-	// Exercício 3
-	function mudarTexto() {
-		document.querySelector("#texto-alvo").innerHTML = "JavaScript Dominado!"
-		// Seu código aqui
-		// Seu código aqui
-		// Seu código aqui
-		// Seu código aqui
-		// Seu código aqui
-		// Seu código aqui
-	}
+    function dobrarNumero() {
+        valor *= 2;
 
-	// Exercício 4
-	function alternarEstado() {
-		document.querySelector("#texto-estado").innerHTML = document.querySelector("#texto-estado").innerHTML == "Desligado" ? "Ligado" : "Desligado";
-	}
-
-	// Exercício 5
-	let valorContador = 10;
-	function contagemRegressiva() {
-		valorContador -= 1;
-		if (valorContador <= 0) {
-			alert(`Fim do tempo!`)
-			return;
-		} 
-		document.querySelector("#visor-contador").innerHTML = valorContador;
-	}
+        if (valor < 100) {
+            tituloNumero.textContent = valor;
+        } else {
+            tituloNumero.textContent = `Cuidado, o número ${valor} está ficando muito grande!`;
+        }
+    }
 </script>
 
 </body></html>
