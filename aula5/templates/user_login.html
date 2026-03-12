@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block conteudo %}
+<script>
+async function logarUsuario() {
+    const dados = {
+        name: document.getElementById('nome').value,
+        password: document.getElementById('password').value,
+    };
+
+    const resposta = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    });
+
+    if (resposta.ok) {
+        const resultado = await resposta.json();
+
+        window.location.href = "/home";
+    } else {
+        const resultado = await resposta.json();
+        if (resultado.detail != undefined) {
+            alert("Erro ao enviar: " + resultado.detail);
+        } else {
+            alert("Erro ao enviar!");
+        }
+    }
+}
+</script>
+    <p>Por favor, faça login para acessar seu perfil.</p>
+<form>
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="password" id="password" placeholder="Senha">
+    <button type="button" onclick="logarUsuario()">Salvar via JS</button>
+</form>
+{% endblock %}

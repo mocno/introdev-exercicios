@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block conteudo %}
+<script>
+    async function enviarUsuario() {
+        const dados = {
+            name: document.getElementById('nome').value,
+            password: document.getElementById('password').value,
+            bio: document.getElementById('bio').value
+        };
+
+        const resposta = await fetch('/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        });
+
+        if (resposta.ok) {
+            const resultado = await resposta.json();
+
+            window.location.href = "/home";
+        } else {
+            const resultado = await resposta.json();
+            if (resultado.detail != undefined) {
+                alert("Erro ao enviar: " + resultado.detail);
+            } else {
+                alert("Erro ao enviar!");
+            }
+        }
+    }
+</script>
+<p>Por favor, crie uma conta.</p>
+<form>
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="password" id="password" placeholder="Senha">
+    <input type="text" id="bio" placeholder="Bio">
+    <button type="button" onclick="enviarUsuario()">Salvar via JS</button>
+</form>
+<a href="/login">Caso ja tenha login</a>
+{% endblock %}
