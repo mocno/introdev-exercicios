@@ -1,0 +1,145 @@
+body {
+  background-color: #1e1e2e;
+}
+
+main {
+  max-width: 600px;
+  margin: 100px auto;
+  background-color: #181825;
+  padding: 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #cdd6f4;
+  font-family: monospace;
+}
+
+h1 {
+  margin: 0;
+}
+h3 {
+  margin: 0;
+}
+h4 {
+  margin: 10px 0 5px 0;
+}
+
+.login-container {
+  background-color: #11111b;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  display: grid;
+  gap: 7px
+}
+
+.login-container button {
+  background-color: #181825;
+  color: #cdd6f4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: solid 1px #cdd6f4;
+  width: auto;
+}
+
+.login-container button:hover {
+  background-color: #313244;
+}
+
+.login-container input {
+  background-color: #181825;
+  color: #cdd6f4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: solid 1px #cdd6f4;
+  width: auto;
+}
+
+.login-container p {
+  font-size: .9em;
+  margin: 0;
+}
+
+.login-sub-container {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 60px;
+}
+
+.filters {
+  display: grid;
+  background-color: #11111b;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.filters select {
+  background-color: #181825;
+  color: #cdd6f4;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: solid 1px #cdd6f4;
+  width: auto;
+}
+
+.filters .menu-type-container {
+  display: flex;
+  vertical-align: middle;
+}
+
+#content {
+  background-color: #11111b;
+  padding: 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.title-menu-type {
+  color: #cba6f7;
+}
+
+.title-restaurant {
+  color: #f9e2af;
+}
+
+.food {
+  display: flex;
+  justify-content: space-between;
+}
+
+.food-opnion-only-hovering {
+  display: none;
+}
+.food:hover .food-opnion-only-hovering {
+  display: block;
+}
+
+.food .food-opnion button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+@media screen and (width < 600px) {
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  main {
+    width: auto;
+    margin: 0;
+  }
+}
+@media screen and (width < 400px) {
+  .login-sub-container {
+    grid-template-columns: 1fr;
+  }
+}

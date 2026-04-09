@@ -1,0 +1,14 @@
+{% if food_opnion is none %}
+<div class="food-opnion food-opnion-only-hovering">
+  <button onclick="setOpnion('{{ name }}', true, {{ id }})">👍</button>
+  <button onclick="setOpnion('{{ name }}', false, {{ id }})">👎</button>
+</div>
+{% elif food_opnion %}
+<div class="food-opnion">
+  <button onclick="setOpnion('{{ name }}', null, {{ id }})">👍</button>
+</div>
+{% else %}
+<div class="food-opnion">
+  <button onclick="setOpnion('{{ name }}', null, {{ id }})">👎</button>
+</div>
+{% endif %}

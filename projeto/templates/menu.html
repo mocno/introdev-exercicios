@@ -1,0 +1,41 @@
+{% set count = namespace(value=1) %}
+{% for menu_type, menu_list in menus.items() %}
+  <h1 class="title-menu-type">{{ menu_type }}</h1>
+  {% for menu in menu_list %}
+    <h2 class="title-restaurant">{{ menu.restaurant_name }}</h2>
+    {% if menu.state == "closed" %}
+      <pre>Restaurante fechado</pre>
+    {% else %}
+      {% for food, food_opnion in menu.content %}
+        <div class="food">
+          <div class="food-name">{{ food }}</div>
+          <div class="food-opnion-container" id="food-opnion-{{ count.value }}">
+            {% if food_opnion is none %}
+            <div class="food-opnion food-opnion-only-hovering">
+              <button onclick="setOpnion('{{food}}', true, {{ count.value }})">👍</button>
+              <button onclick="setOpnion('{{food}}', false, {{ count.value }})">👎</button>
+            </div>
+            {% elif food_opnion %}
+            <div class="food-opnion">
+              <button onclick="setOpnion('{{food}}', null, {{ count.value }})">👍</button>
+            </div>
+            {% else %}
+            <div class="food-opnion">
+              <button onclick="setOpnion('{{food}}', null, {{ count.value }})">👎</button>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% set count.value = count.value + 1 %}
+      {% else %}
+        Não há nada no cardápio
+      {% endfor %}
+      {% if menu.calorific_value %}
+        <p>Valor energético: {{ menu.calorific_value }}</p>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% else %}
+  <h3>Erro inexperado<h3>
+{% endfor %}
+

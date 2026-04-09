@@ -1,0 +1,6 @@
+<label for="login">Usuário:</label>
+<form class="login-sub-container">
+  <input onkeydown="doLogoutOnEnter(event);" type="text" id="login" name="login" value="{{ user.login }}" disabled required>
+  <button onclick="doLogout(event);" id="login-button" type="button">Sair</button>
+</form>
+<p>Cada usuário pode definir suas preferências de comida.</p>
