@@ -83,6 +83,18 @@
       }
     }
 
+    function showPreferences() {
+      let loginInput = document.querySelector("#login");
+      let login = loginInput.value;
+
+      if (login == '' || !loginInput.disabled) {
+        alert("Faço login para ver suas preferências.")
+        return;
+      }
+
+      htmx.ajax('GET', '/food-opnion', { values: { login }, target: '#content' });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
       refilter();
     })
@@ -101,19 +113,24 @@
         <p>Cada usuário pode definir suas preferências de comida.</p>
       </div>
       <div class="filters">
-        <h3>Filtros</h3>
+        <div class="filter-titles">
+        <h3 onclick="refilter();">Filtros</h3>
+        <h3 onclick="showPreferences();" style="text-align: right;">Mostrar preferências</h3>
+        </div>
         <h4>Semana</h4>
         <select name="date" id="date"  onchange="refilter()">
         {% for value, date in dates %}
           <option value="{{ value }}">{{ date }}</option>
         {% endfor %}
         </select>
-        <h4>Tipo da refeição</h4>
-        <div class="menu-type-container">
-          <input type="checkbox" id="menu_type_1" name="menu_type_1" value="Almoço" onchange="refilter()"{{ " checked" if "Almoço" in menu_types else "" }}>
-          <label for="menu_type_1">Almoço</label>
-          <input type="checkbox" id="menu_type_2" name="menu_type_2" value="Jantar" onchange="refilter()"{{ " checked" if "Jantar" in menu_types else "" }}>
-          <label for="menu_type_2">Jantar</label>
+        <div>
+          <h4>Tipo da refeição</h4>
+          <div class="menu-type-container">
+            <input type="checkbox" id="menu_type_1" name="menu_type_1" value="Almoço" onchange="refilter()"{{ " checked" if "Almoço" in menu_types else "" }}>
+            <label for="menu_type_1">Almoço</label>
+            <input type="checkbox" id="menu_type_2" name="menu_type_2" value="Jantar" onchange="refilter()"{{ " checked" if "Jantar" in menu_types else "" }}>
+            <label for="menu_type_2">Jantar</label>
+          </div>
         </div>
       </div>
       <div id="content">

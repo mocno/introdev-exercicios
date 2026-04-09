@@ -79,6 +79,11 @@ h4 {
   margin-top: 10px;
 }
 
+.filters .filter-titles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .filters select {
   background-color: #181825;
   color: #cdd6f4;

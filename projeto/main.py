@@ -68,8 +68,6 @@ async def get_menu_page(request: Request, date: Annotated[str, Form()] | None = 
     if not "HX-Request" in request.headers:
         return RedirectResponse(url="/")
 
-    print(date)
-
     if date is None:
         date = datetime.today()
 
@@ -158,6 +156,19 @@ async def do_login(login: Annotated[str, Form()], request: Request):
 def do_logout(request: Request):
     return templates.TemplateResponse(request, "login.html", {})
 
+@app.get("/food-opnion")
+async def show_food_opnions(login: str, request: Request):
+    if not "HX-Request" in request.headers:
+        return RedirectResponse(url="/")
+
+    with Session(engine) as session:
+        user = session.exec(select(User).where(User.login == login)).first()
+        statement = select(FoodOpnion).where(FoodOpnion.owner == user)
+        results = session.exec(statement)
+        food_opnions = results.all()
+
+    return templates.TemplateResponse(request, "opnions.html", { "food_opnions": food_opnions })
+
 @app.post("/food-opnion")
 async def create_food_opnion(name: Annotated[str, Form()], liked: Annotated[bool, Form()], login: Annotated[str, Form()], id: Annotated[int, Form()], request: Request):
     if not "HX-Request" in request.headers:
@@ -194,6 +205,3 @@ async def delete_food_opnion(name: str, login: str, id: int, request: Request):
 
     return templates.TemplateResponse(request, "food-opnion.html", { "food_opnion": None, "name": name, "id": id })
 
-print("XXXXXXXXXXXXXXXX")
-print("Adicionar estatistica quando não logado")
-print("Portabilidade")

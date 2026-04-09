@@ -1,0 +1,17 @@
+<h3>Preferências</h3>
+{% for food_opnion in food_opnions %}
+<div class="food">
+  <div class="food-name">{{ food_opnion.food_name }}</div>
+  <div class="food-opnion-container">
+    <div class="food-opnion">
+    {% if food_opnion.liked %}
+      <button>👍</button>
+    {% else %}
+      <button>👎</button>
+    {% endif %}
+    </div>
+  </div>
+</div>
+{% else %}
+Não há preferências salvas
+{% endfor %}
